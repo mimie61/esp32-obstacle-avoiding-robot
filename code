@@ -1,0 +1,80 @@
+
+// =================================
+// OBSTACLE AVOIDING ROBOT
+// Motor Control Test
+// ESP32 + L298N
+// =================================
+
+// Left motor pins
+#define IN1 18
+#define IN2 19
+
+// Right motor pins
+#define IN3 21
+#define IN4 22
+
+void setup() {
+
+  // Configure motor control pins
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+
+  // Start Serial Monitor
+  Serial.begin(115200);
+
+  Serial.println("Robot Motor Control Ready!");
+
+  stopMotors();
+}
+
+void loop() {
+
+  // Test 1: Move forward
+  Serial.println("Moving Forward");
+  moveForward();
+  delay(2000);
+
+  // Test 2: Stop
+  Serial.println("Stopping");
+  stopMotors();
+  delay(2000);
+
+  // Test 3: Move backward
+  Serial.println("Moving Backward");
+  moveBackward();
+  delay(2000);
+
+  // Test 4: Stop
+  Serial.println("Stopping");
+  stopMotors();
+  delay(2000);
+}
+
+// Move both motors forward
+void moveForward() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+
+// Move both motors backward
+void moveBackward() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
+
+// Stop both motors
+void stopMotors() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
